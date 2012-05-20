@@ -1,0 +1,27 @@
+[
+	{ "id" : 1, "name": "New accounts", "activities": [
+		{ "id" : 1, "name" : "New Account"}
+	] },
+	{ "id" : 2, "name": "Transactions", "activities": [
+		{ "id" : 2, "name" : "Investments", 
+			"alias" : [ { "name": "Contributions", "showAliasOn": [1,2,3] } ] },
+		{ "id" : 3, "name" : "Withdrawals", 
+			"alias" : [ {"name" : "Distributions", "showAliasOn":[1,2,3]} ] },
+		{ "id" : 4, "name" : "Exchanges"},
+		{ "id" : 5, "name" : "Rebalances"}
+	] },
+	{ "id" : 3, "name": "Transfers, rollovers and coversions", "activities": [
+		{ "id" : 6, "name" : "Transfers and rollovers", 
+			"alias" : [ { "name" : "Transfers", "showAliasOn" : [1,2,3] } ] },
+		{ "id" : 7, "name" : "Roth conversions"}
+	] },
+	{ "id" : 4, "name": "Dividends and capital gains", "activities": [
+		{ "id" : 8, "name" : "Divindend and capital gain options"}
+	] },
+	{ "id" : 5, "name": "Account Informations", "activities": [
+		{ "id" : 10, "name" : "Tax forms and cost basis options", 
+			"alias" : [ {"name" : "Tax Forms", "showAliasOn" : [1,2,3] } ] },
+		{ "id" : 11, "name" : "Statements and literature"},
+		{ "id" : 12, "name" : "Client Information"}
+	] }
+]

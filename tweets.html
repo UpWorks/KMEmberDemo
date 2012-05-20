@@ -1,0 +1,58 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Ember JS Tweet Loader</title>
+  <meta name="description" content="Ember JS Tutorial">
+  <meta name="author" content="afweb">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=2">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <script type="text/x-handlebars"> 
+  <div id="frm"> 
+    <b>Load Tweets for: </b>
+    {{view App.SearchTextField placeholder="Twitter username" valueBinding="App.tweetsController.username"}}
+    <button {{action "loadTweets" target="App.tweetsController"}}>Go!</button> 
+  </div> 
+  <div id="content"> 
+    <div id="recent"> 
+      <h3>Recent Users</h3>
+      <ol>
+        {{#each App.recentUsersController.reverse}} 
+          <li> 
+            <a href="#" title="view again" {{action "searchAgain" target="App.recentUsersController"}}>{{this}}</a> - 
+            <a href="#" title="remove" {{action "removeUser" target="App.recentUsersController"}}>X</a> 
+          </li> 
+        {{/each}} 
+      </ol>
+    </div> 
+    <div id="tweets"> 
+      <h3>Tweets</h3> 
+      <ul> 
+      {{#each App.tweetsController}} 
+      <li> <img {{bindAttr src="avatar"}} /> <span>{{date}}</span> 
+      <h3>{{screen_name}}</h3> 
+      <p>{{text}}</p> 
+      </li> 
+      {{/each}} 
+      </ul>
+    </div> 
+  </div> 
+  </script>
+
+
+  <script src="js/libs/jquery-1.7.2.min.js"></script>
+  <script src="js/libs/ember-0.9.7.1.min.js"></script>
+  <script src="js/app1.js"></script>
+</body>
+</html>
