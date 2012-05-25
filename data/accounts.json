@@ -1,21 +1,21 @@
 [
-	{ "id" : 1, "name" : "Individual retirement", "accounts" : [
+	{ "id" : 1, "name" : "Individual retirement", "accounttypes" : [
 		{ "id" : 1, "name" : "Roth IRA"},
 		{ "id" : 2, "name" : "Traditional IRA"}
 	] },
-	{ "id" : 2, "name" : "Education Savings", "accounts" : [
+	{ "id" : 2, "name" : "Education Savings", "accounttypes" : [
 		{ "id" : 3, "name" : "CollegeAmerica 529"},
 		{ "id" : 4, "name" : "Coverdale ESA"}
 	] },
-	{ "id" : 3, "name" : "Non-retirement", "accounts" : [
-		{ "id" : 5, "name" : "Individual", "accountCatID" : 3},
-		{ "id" : 6, "name" : "Joint", "accountCatID" : 3},
-		{ "id" : 7, "name" : "UGMA/UTMA", "accountCatID" : 3}
+	{ "id" : 3, "name" : "Non-retirement", "accounttypes" : [
+		{ "id" : 5, "name" : "Individual"},
+		{ "id" : 6, "name" : "Joint"},
+		{ "id" : 7, "name" : "UGMA/UTMA"}
 	] },
-	{ "id" : 4, "name" : "Employer-sponsored retirement plans", "accounts" : [
-		{ "id" : 8, "name" : "SEP IRA", "accountCatID" : 4},
-		{ "id" : 9, "name" : "SIMPLE IRA", "accountCatID" : 4},
-		{ "id" : 10, "name" : "SARSEP IRA", "accountCatID" : 4},
-		{ "id" : 11, "name" : "403(b)", "accountCatID" : 4}
+	{ "id" : 4, "name" : "Employer-sponsored retirement plans", "accounttypes" : [
+		{ "id" : 8, "name" : "SEP IRA"},
+		{ "id" : 9, "name" : "SIMPLE IRA"},
+		{ "id" : 10, "name" : "SARSEP IRA"},
+		{ "id" : 11, "name" : "403(b)"}
 	] }
 ]

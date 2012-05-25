@@ -9,29 +9,25 @@
 	},
 	{ 
 		"id" : 2, 
-		"name": "Transactions", 
+		"name": "Transactions",
 		"type": [{ 
-			"id" : 2, 
+			"id" : 1, 
 			"name" : "Investments", 
-			"alias" : { 
-				"name": "Contributions", 
-				"showAliasAccountID": [1,2,3] 
-				} 
+			"aliasname": "Contributions", 
+			"showaliasaccountid": [1,2,3]  
+		},
+		{ 
+			"id" : 2, 
+			"name" : "Withdrawals", 
+			"aliasname" : "Distributions", 
+			"showaliasaccountid":[1,2,3]
 		},
 		{ 
 			"id" : 3, 
-			"name" : "Withdrawals", 
-			"alias" : { 
-				"name" : "Distributions", 
-				"showAliasAccountID":[1,2,3]
-			}
-		},
-		{ 
-			"id" : 4, 
 			"name" : "Exchanges"
 		},
 		{ 
-			"id" : 5, 
+			"id" : 4, 
 			"name" : "Rebalances"
 		}
 	]},
@@ -39,15 +35,13 @@
 		"id" : 3, 
 		"name": "Transfers, rollovers and coversions", 
 		"type": [{ 
-			"id" : 6, 
+			"id" : 1, 
 			"name" : "Transfers and rollovers", 
-			"alias" : { 
-				"name" : "Transfers", 
-				"showAliasAccountID" : [1,2,3] 
-				}
+			"aliasname" : "Transfers", 
+			"showaliasaccountid" : [1,2,3] 
 		},
 		{ 
-			"id" : 7, 
+			"id" : 2, 
 			"name" : "Roth conversions"
 		}
 	]},
@@ -55,7 +49,7 @@
 		"id" : 4, 
 		"name": "Dividends and capital gains", 
 		"type": [{ 
-			"id" : 8, 
+			"id" : 1, 
 			"name" : "Divindend and capital gain options"
 		}
 	]},
@@ -63,19 +57,17 @@
 		"id" : 5, 
 		"name": "Account Informations", 
 		"type": [{ 
-			"id" : 10, 
+			"id" : 1, 
 			"name" : "Tax forms and cost basis options", 
-			"alias" : {
-				"name" : "Tax Forms", 
-				"showAliasAccountID" : [1,2,3] 
-			} 
+			"aliasname" : "Tax Forms", 
+			"showaliasaccountid" : [1,2,3] 
 		},
 		{ 
-			"id" : 11, 
+			"id" : 2, 
 			"name" : "Statements and literature"
 		},
 		{ 
-			"id" : 12, 
+			"id" : 3, 
 			"name" : "Client Information"
 		}
 	]}
