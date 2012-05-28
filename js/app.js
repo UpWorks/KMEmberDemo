@@ -3,90 +3,76 @@
 **************************/
 Km = Em.Application.create({
 	rootElement: $('#selctor-app'),
-	activitys: [],
-	accounts: [],
 	ready: function() {
-		this.set('activitys', Km.store.findAll(Km.Activity));
-		this.set('accounts', Km.store.findAll(Km.Account));
-		this._super();	
+		Km.activityController.loadActivities();
+		Km.accountController.loadAccounts();
+
 	}
 });
-
-Km.store = DS.Store.create({
-	revision: 4,
-	adapter: DS.Adapter.create({
-		findAll: function (store, type) {
-				var url = type.url;
-				jQuery.getJSON(url, function(data) {
-					store.loadMany(type, data);
-			});
-		}
-	})
-});
-
-
-
 /************************** 
 * Models 
 **************************/
-Km.Activity = DS.Model.extend({
-	name: DS.attr('string'),
-	showAlias: false,
-	triggerAlias: function (selectedAccntID, arr) {
-		if (jQuery.inArray(selectedAccntID, arr)) {
-			this.set('showAlias', true);
-		}
-	}
+Km.Activity = Em.Object.extend({
 });
 
-Km.Activity.reopenClass({
-	url: 'data/activitys.json'
+Km.Account = Em.Object.extend({
+
 });
 
-
-Km.Account = DS.Model.extend({
-	primaryKey: '_id',
-	name: DS.attr('string')
+Km.selectedAccount = Em.Object.extend({
+	id: 2
 });
-
-Km.Account.reopenClass({
-	url: 'data/accounts.json'
-})
-
 /************************** 
 * Views
 **************************/
 Km.ActivityView = Em.View.extend({
+
 	
+	showAlias: function () {
+		var arr = this.getPath('content.activitytypes'),
+			show = false;
+			arr.forEach(function(item) {
+				var aliasArr = item.showaliasaccountid;
+				if (typeof aliasArr !== 'undefined') {
+					if (jQuery.inArray(2,aliasArr)) {
+						console.log('true');
+						show = true;
+					}
+				}
+			});
+		return show;
+	}.property('content.@each.activitytypes.@each')
+
+
 });
 
 Km.AccountView = Em.View.extend({
-	
-});
 
+});
 
 /************************** 
 /* Controllers 
 /**************************/
-// Km.activityController = Em.ArrayProxy.create({
-	
-// 	init: function () {
-// 		this.set('content', Km.store.findAll(Km.store,Km.Activity));
-// 	}
-// });
+Km.activityController = Em.ArrayProxy.create({
+	content: [],
+	loadActivities: function () {
+		var self = this;
+		$.getJSON('data/activitys.json', function(data) {
+			data.forEach(function(item) {
+				self.pushObject(Km.Activity.create(item));
+			});
+		});
+	}
+});
 
-// Km.accountsController = Em.ArrayProxy.create({
-
-// 	content:[],
-
-// 	loadAccounts: function () {
-// 		var self = this;
-// 		$.getJSON('data/accounts.json', function(data) {
-			
-// 			data.forEach(function(item) {
-// 				self.pushObject(Km.Account.create(item));
-// 			});
-// 		});
-// 	}
-
-// });
+Km.accountController = Em.ArrayController.create({
+	content: [],
+	loadAccounts: function () {
+		var self = this;
+		$.getJSON('data/accounts.json', function(data) {
+			data.forEach(function(item) {
+				self.pushObject(Km.Account.create(item));
+			});
+		});
+	}
+});

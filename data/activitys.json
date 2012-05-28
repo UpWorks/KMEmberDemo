@@ -2,7 +2,7 @@
 	{ 
 		"id" : 1, 
 		"name": "New accounts", 
-		"type": [{ 
+		"activitytypes": [{ 
 			"id" : 1, 
 			"name" : "New Account"
 		}]
@@ -10,7 +10,7 @@
 	{ 
 		"id" : 2, 
 		"name": "Transactions",
-		"type": [{ 
+		"activitytypes": [{ 
 			"id" : 1, 
 			"name" : "Investments", 
 			"aliasname": "Contributions", 
@@ -34,7 +34,7 @@
 	{ 	
 		"id" : 3, 
 		"name": "Transfers, rollovers and coversions", 
-		"type": [{ 
+		"activitytypes": [{ 
 			"id" : 1, 
 			"name" : "Transfers and rollovers", 
 			"aliasname" : "Transfers", 
@@ -48,7 +48,7 @@
 	{ 
 		"id" : 4, 
 		"name": "Dividends and capital gains", 
-		"type": [{ 
+		"activitytypes": [{ 
 			"id" : 1, 
 			"name" : "Divindend and capital gain options"
 		}
@@ -56,7 +56,7 @@
 	{ 
 		"id" : 5, 
 		"name": "Account Informations", 
-		"type": [{ 
+		"activitytypes": [{ 
 			"id" : 1, 
 			"name" : "Tax forms and cost basis options", 
 			"aliasname" : "Tax Forms", 

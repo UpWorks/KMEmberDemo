@@ -21,39 +21,47 @@
 	<div id="selector-app">
 	<script type="text/x-handlebars">
 		<h2>Activities</h2>
-		<ul>
-			{{#each Km.activitys}}
-				{{#view Km.ActivityView tagName="li" contentBinding="this"}}
-					{{_parentView.contentIndex}}:{{content.name}}
-						<ul>
-							{{#each content.type}}
-							<li>{{name}}</li>
-							{{/each}}
-						</ul>
-				{{/view}}
+		<ul>			
+			{{#each Km.activityController}}
+			{{#view Km.ActivityView contentBinding="this"}}
+				<li>
+					{{content.id}}:{{content.name}}
+					<ul>
+						{{#each content.activitytypes}}
+							<li>{{showAlias}}
+							{{name}} - {{aliasname}}
+							</li>
+						{{/each}}
+					</ul>
+
+				</li>
+			{{/view}}	
 			{{/each}}
 	</ul>
 	</script>
 	<script type="text/x-handlebars">
 		<h2>Accounts</h2>
 		<ul>
-			{{#each Km.accounts}}
-				{{#view Km.AccountView tagName="li" contentBinding="this"}}
-					{{content.name}}
+			{{#view Km.AccountView}}
+			{{#each Km.accountController}}
+				<li>
+					{{name}}
 					<ul>
-						{{#each content.accounttypes}}
+						{{#each accounttypes}}
 						<li>{{name}}</li>
 						{{/each}}
 						</ul>
-				{{/view}}
-			{{/each}}
+					</li>
+				{{/each}}
+			{{/view}}
 		<ul>
 	</script>
+
 	</div>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
 	<script src="js/libs/ember-0.9.8.1.min.js"></script>
-	<script src="js/libs/ember-data/ember-data-latest.js"></script>
+
 	<script src="js/app.js"></script>
 </body>
 </html>
