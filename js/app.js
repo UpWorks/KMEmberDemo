@@ -6,6 +6,7 @@ Km = Em.Application.create({
 	ready: function() {
 		Km.activityController.loadActivities();
 		Km.accountController.loadAccounts();
+		this._super();
 
 	}
 });
@@ -27,10 +28,10 @@ Km.selectedAccount = Em.Object.extend({
 **************************/
 Km.ActivityView = Em.View.extend({
 
-	
 	showAlias: function () {
 		var arr = this.getPath('content.activitytypes'),
 			show = false;
+			console.log(arr);
 			arr.forEach(function(item) {
 				var aliasArr = item.showaliasaccountid;
 				if (typeof aliasArr !== 'undefined') {
@@ -40,10 +41,7 @@ Km.ActivityView = Em.View.extend({
 					}
 				}
 			});
-		return show;
-	}.property('content.@each.activitytypes.@each')
-
-
+	}.property('content.@each')
 });
 
 Km.AccountView = Em.View.extend({

@@ -26,14 +26,13 @@
 			{{#view Km.ActivityView contentBinding="this"}}
 				<li>
 					{{content.id}}:{{content.name}}
-					<ul>
-						{{#each content.activitytypes}}
-							<li>{{showAlias}}
-							{{name}} - {{aliasname}}
-							</li>
-						{{/each}}
+					<ul>{{showAlias}}
+					{{#each content.activitytypes}}
+						<li>
+							{{name}} {{aliasname}}
+						</li>
+					{{/each}}
 					</ul>
-
 				</li>
 			{{/view}}	
 			{{/each}}
@@ -48,6 +47,7 @@
 					{{name}}
 					<ul>
 						{{#each accounttypes}}
+						
 						<li>{{name}}</li>
 						{{/each}}
 						</ul>
