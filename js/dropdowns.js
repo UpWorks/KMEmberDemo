@@ -4,116 +4,77 @@
 Km = Em.Application.create({
 	rootElement: $('#kmselector')
 });
-Km.store = DS.Store.create({
-	revision: 4,
-	adapter:  DS.Adapter.create({
-		findAll: function (store, type) {
-			var url = type.url;
-			console.log('run');
-			$.getJSON(url, function(data) {
-				store.loadMany(type, data);
-			});
-		},
-		find: function ( store, type, id) {
-			var url = type.url;
-			$.getJSON(url, function(data) {
-			
-			var objFiltered =[];
 
-            for (var key in data) {
-              var value = data[key];
-                if (typeof value == 'object') {
-                  if (value instanceof Array) {
-                      //future use
-                      for (var i = 0; i < value.length; i++) {
-                          var item = value[i];
-                          console.log(item);
-                      }
-                   } else {
-                       if(value instanceof Object) {
-                           //construct one dimensional object
-                           //objFiltered.push(value);
-                           //console.log(value.activitytypes);
-                           console.log(value);
-
-                       }
-                    }
-                } else {
-                    //future use
-                    //plain Text;
-                }
-            }
-
-			});
-
-		}
-	})
-});
 /************************** 
 * Models 
 **************************/
-Km.Activity = DS.Model.extend({
-	name: DS.attr('string'),
-	activitytypes: DS.hasMany('Km.ActivityType', { embedded: true }),
+Km.Activity = Em.Object.extend({
 
 });
-Km.Activity.reopenClass({
-	url: 'data/activitys.json'
-});
-
-Km.ActivityType = DS.Model.extend({
-	name: DS.attr('string'),
-	aliasname: DS.attr('string'),
-	activity: DS.belongsTo('Km.Activity')
-});
-
-Km.ActivityType.reopenClass({
-	url: 'data/activitys.json'
-});
-
-
 
 Km.Account = Em.Object.extend({
 
 });
-
-Km.SelectedAccount = Em.Object.extend({
-	id: null
-});
-
-var selectedAccount = Km.SelectedAccount.create({id:9});
-
 
 /************************** 
 /* Controllers 
 /**************************/
 Km.activitysController = Em.ArrayProxy.create({
 	content: [],
-
 	loadActivities: function () {
-		this.set('content', Km.store.findAll(Km.Activity));
+		var self = this;
+		$.getJSON('data/activitys.json', function(data) {
+			data.forEach(function(item) {
+				self.pushObject(Km.Activity.create(item));
+			});
+		});
 	}
 });
 
+Km.accountsController = Em.ArrayProxy.create({
+	content: [],
+	loadAccounts: function () {
+		var self = this;
+		$.getJSON('data/accounts.json', function(data) {
+			data.forEach(function(item) {
+				self.pushObject(Km.Account.create(item));
+			});
+		});
+	}
+});
 
 Km.activitysController.loadActivities();
 
+Km.accountsController.loadAccounts();
+
 Km.selectedActivityController = Em.Object.create({
-	key: null
+	parentID: null,
+	childID: null,
+	isError: function(property) {
+		return !Em.empty(this.get(property));
+		},
+
+
 });
+
+Km.selectedAccountController = Em.Object.create({
+	parentID: null,
+	childID: null
+});
+
 
 /************************** 
 * Views
 **************************/
-Km.DropDown = Em.View.extend({
+Km.DropDowns = Em.View.extend({
 	
-	templateName: 'dropdown',
+	templateName: 'kmdropdown',
 
 	activitySelect: Em.View.extend({
 		
 		isOpen: false,
 		
-		selected: Em.Object.create({name: 'Select Activity', value:''}),
+		selectedActivity: Em.Object.create({name: 'Select Activity', value:''}),
 		
 		contentBinding: 'Km.activitysController',
 
@@ -130,16 +91,99 @@ Km.DropDown = Em.View.extend({
 		},
 
 		select: function (e) {
-			var selected = e.context;
-			console.log(e.context);
+
+			var parentID = e.context.parent_id,
+					childID = e.context.id
+					parentActivity = Km.activitysController.objectAt(parentID-1),
+					parentActivityName = parentActivity.name,
+					selected = e.context;
+
+			e.preventDefault();
+
+			console.log(parentID);
+
+			console.log(childID);
+
+			Km.selectedActivityController.set('parentID', parentID);
+
+			Km.selectedActivityController.set('childID', parentID);
+
+			console.log(parentActivityName + ' >> ' + parentActivity.activitynames[childID-1].name);
+
+			console.log('ParentID ' + Km.selectedActivityController.parentID + ' ChildID ' + Km.selectedActivityController.childID),
+
 			this.content.setEach('isActive', false);
-			this.set('selected', selected);
-			//selected.set('isActive', true);
+
+			this.set('selectedActivity', selected);
+
 			this.set('isOpen', false);
+			
 		}
 
+	}),
+
+	accountSelect: Em.View.extend({
+		
+		isOpen: false,
+		
+		selectedAccount: Em.Object.create({name: 'Select Account', value:''}),
+		
+		contentBinding: 'Km.accountsController',
+
+		dropdownToggle: function (e) {
+			this.toggleProperty('isOpen');
+			e.stopPropagation();
+		},
+
+		didInsertElement: function () {
+			var self = this;
+			$('body').on('click', function() {
+				self.set('isOpen', false);
+			});
+		},
+
+		select: function (e) {
+
+			var parentID = e.context.parent_id,
+					childID = e.context.id
+					parentAccount = Km.accountsController.objectAt(parentID-1),
+					parentAccountName = parentAccount.name,
+					selected = e.context;
+
+			e.preventDefault();
+
+			console.log(parentID);
+
+			console.log(childID);
+
+			Km.selectedAccountController.set('parentID', parentID);
+
+			Km.selectedAccountController.set('childID', parentID);
+
+			console.log(parentAccountName + ' >> ' + parentAccount.accounttypes[childID-1].name);
+
+			console.log('ParentID ' + Km.selectedAccountController.parentID + ' ChildID ' + Km.selectedAccountController.childID),
+
+			this.content.setEach('isActive', false);
+
+			this.set('selectedAccount', selected);
+
+			this.set('isOpen', false);
+			
+		}
+
+	}),
+
+	goButton: Em.View.extend({
+		go: function(e) {
+			console.log(Km.selectedActivityController.isError('parentID'));
+			
+		}
 	})
+
+	
 });
+
 
 /************************** 
 * Handlebar Helpers

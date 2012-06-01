@@ -2,73 +2,98 @@
 	{ 
 		"id" : 1, 
 		"name": "New accounts", 
-		"activitytypes": [{ 
+		"activitynames": [{ 
 			"id" : 1, 
-			"name" : "New Account"
+			"name" : "New Account", 
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 1
 		}]
 	},
 	{ 
 		"id" : 2, 
 		"name": "Transactions",
-		"activitytypes": [{ 
+		"activitynames": [{ 
 			"id" : 1, 
 			"name" : "Investments", 
 			"aliasname": "Contributions", 
-			"showaliasaccountid": [1,2,3]  
+			"showaliasonid": [1,2,3],
+			"parent_id": 2
 		},
 		{ 
 			"id" : 2, 
 			"name" : "Withdrawals", 
 			"aliasname" : "Distributions", 
-			"showaliasaccountid":[4,5,6]
+			"showaliasonid":[4,5,6],
+			"parent_id": 2
 		},
 		{ 
 			"id" : 3, 
-			"name" : "Exchanges"
+			"name" : "Exchanges",
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 2
 		},
 		{ 
 			"id" : 4, 
-			"name" : "Rebalances"
+			"name" : "Rebalances",
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 2
 		}
 	]},
 	{ 	
 		"id" : 3, 
 		"name": "Transfers, rollovers and coversions", 
-		"activitytypes": [{ 
+		"activitynames": [{ 
 			"id" : 1, 
 			"name" : "Transfers and rollovers", 
 			"aliasname" : "Transfers", 
-			"showaliasaccountid" : [7,8,9] 
+			"showaliasonid" : [7,8,9],
+			"parent_id": 3
 		},
 		{ 
 			"id" : 2, 
-			"name" : "Roth conversions"
+			"name" : "Roth conversions", 
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 3
 		}
 	]},
 	{ 
 		"id" : 4, 
 		"name": "Dividends and capital gains", 
-		"activitytypes": [{ 
-			"id" : 1, 
-			"name" : "Divindend and capital gain options"
+		"activitynames": [{ 
+			"id" : 1,  
+			"name" : "Dividend and capital gain options",
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 4
 		}
 	]},
 	{ 
 		"id" : 5, 
 		"name": "Account Informations", 
-		"activitytypes": [{ 
+		"activitynames": [{ 
 			"id" : 1, 
 			"name" : "Tax forms and cost basis options", 
 			"aliasname" : "Tax Forms", 
-			"showaliasaccountid" : [10,11,12] 
+			"showaliasonid" : [10,11,12],
+			"parent_id": 5
 		},
 		{ 
 			"id" : 2, 
-			"name" : "Statements and literature"
+			"name" : "Statements and literature", 
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 5
 		},
 		{ 
 			"id" : 3, 
-			"name" : "Client Information"
+			"name" : "Client Information", 
+			"aliasname": null, 
+			"showaliasonid": null,
+			"parent_id": 5
 		}
 	]}
 ]

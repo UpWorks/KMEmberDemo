@@ -17,47 +17,67 @@
 	<![endif]-->
 
 	<style type="text/css">
-		#parentView {  
+		#kmselector {  
 			margin:10px;
-    		padding:70px;
-    		background:#ccc;
-    	}
+				padding:50px;
+				background:#ccc;
+			}
+			.btn-group {
+				margin-right: 75px;
+			}
+
 
 	</style>
 
 </head>
 <body>
-	<div id="kmselector">
+	<form id="kmselector" class="form-inline">
 	<script type="text/x-handlebars">
-		{{view Km.DropDown id="parentView"}}
+	<p>I want infornmation about:</p>
+		{{view Km.DropDowns id="parentView" class="btn-toolbar"}}
 	</script>
-	<script type="text/x-handlebars" data-template-name="dropdown">
-
+	<script type="text/x-handlebars" data-template-name="kmdropdown">
 		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
 			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
-				{{selected.name}}
+				{{selectedActivity.name}}
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
 					{{#each content}}
+					<li><b>{{name}}</b></li>
+					{{#each activitynames}}
 					<li>
-					{{name}}</li>
-					{{#each activitytypes}}
-					<li {{bindAttr class="isActive:active"}}>
 					<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
 						{{/each}}
 					{{/each}}
 				</ul>
 			{{/view}}
+		{{#view accountSelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
+			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
+				{{selectedAccount.name}}
+				<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					{{#each content}}
+					<li><b>{{name}}</b></li>
+					{{#each accounttypes}}
+					<li>
+					<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
+						{{/each}}
+					{{/each}}
+				</ul>
+			{{/view}}
+		{{#view goButton class="btn-group"}}
+			<a href="#" class="btn btn-success" {{action "go" on="click"}}>Go</a>
+			{{/view}}
 	</script>
 
 
-	</div>
+	</form>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
 	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="js/libs/ember-0.9.8.1.min.js"></script>
-	<script src="js/libs/ember-data/ember-data-latest.min.js"></script>
 	<script src="js/dropdowns.js"></script>
 </body>
 </html>

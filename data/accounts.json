@@ -1,21 +1,32 @@
 [
 	{ "id" : 1, "name" : "Individual retirement", "accounttypes" : [
-		{ "id" : 1, "name" : "Roth IRA"},
-		{ "id" : 2, "name" : "Traditional IRA"}
+		{ "id" : 1, "name" : "Roth IRA",
+			"parent_id": 1},
+		{ "id" : 2, "name" : "Traditional IRA",
+			"parent_id": 1}
 	] },
 	{ "id" : 2, "name" : "Education Savings", "accounttypes" : [
-		{ "id" : 1, "name" : "CollegeAmerica 529"},
-		{ "id" : 2, "name" : "Coverdale ESA"}
+		{ "id" : 1, "name" : "CollegeAmerica 529",
+			"parent_id": 2},
+		{ "id" : 2, "name" : "Coverdale ESA",
+			"parent_id": 2}
 	] },
 	{ "id" : 3, "name" : "Non-retirement", "accounttypes" : [
-		{ "id" : 1, "name" : "Individual"},
-		{ "id" : 2, "name" : "Joint"},
-		{ "id" : 3, "name" : "UGMA/UTMA"}
+		{ "id" : 1, "name" : "Individual",
+			"parent_id": 3},
+		{ "id" : 2, "name" : "Joint",
+			"parent_id": 3},
+		{ "id" : 3, "name" : "UGMA/UTMA",
+			"parent_id": 3}
 	] },
 	{ "id" : 4, "name" : "Employer-sponsored retirement plans", "accounttypes" : [
-		{ "id" : 1, "name" : "SEP IRA"},
-		{ "id" : 2, "name" : "SIMPLE IRA"},
-		{ "id" : 3, "name" : "SARSEP IRA"},
-		{ "id" : 4, "name" : "403(b)"}
+		{ "id" : 1, "name" : "SEP IRA",
+			"parent_id": 4},
+		{ "id" : 2, "name" : "SIMPLE IRA",
+			"parent_id": 4},
+		{ "id" : 3, "name" : "SARSEP IRA",
+			"parent_id": 4},
+		{ "id" : 4, "name" : "403(b)",
+			"parent_id": 4}
 	] }
 ]
