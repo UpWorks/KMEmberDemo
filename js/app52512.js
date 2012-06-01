@@ -11,23 +11,37 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css?v=2">
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
 </head>
 <body>
-	<div id="kmselector">
+	<div id="selector-app">
 	<script type="text/x-handlebars">
 		<h2>Activities</h2>
 		<ul>			
-			{{#each Km.activitysController}}
-			{{#view Km.ActivityListView contentBinding="this"}}	
-				<li>{{content.name}}</li>
+			{{#each Km.activityController}}
+			{{#view Km.ActivityView contentBinding="this"}}
+				<li>
+					{{content.id}}:{{content.name}}
+					<ul>
 					{{#each content.activitytypes}}
-						<li><a href="#" {{action "clicked" on="click"}}>{{aliasOn this}}</a></li>
+
+						<li>
+							{{#if _parentView.checkAlias}}
+
+							{{aliasname}}
+
+							{{/if}}
+
+							{{name}}
+
+						</li>
 					{{/each}}
+					</ul>
+				</li>
 			{{/view}}	
 			{{/each}}
 		</ul>
@@ -35,22 +49,27 @@
 	<script type="text/x-handlebars">
 		<h2>Accounts</h2>
 		<ul>
-			{{#each Km.accountsController}}
-			{{#view Km.AccountListView contentBinding="this"}}
-				<li>{{content.name}}</li>
-					{{#each content.accounttypes}}
-					<li><a href="#" {{action "clicked" on="click"}}>{{name}}</a></li>
-					{{/each}}
-				{{/view}}
-			{{/each}}
+			{{#view Km.AccountView}}
+			{{#each Km.accountController}}
+				<li>
+					{{name}}
+					<ul>
+						{{#each accounttypes}}
+						
+						<li>{{name}}</li>
+						{{/each}}
+						</ul>
+					</li>
+				{{/each}}
+			{{/view}}
 		<ul>
 	</script>
 
 	</div>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
-	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="js/libs/ember-0.9.8.1.min.js"></script>
+
 	<script src="js/app.js"></script>
 </body>
 </html>

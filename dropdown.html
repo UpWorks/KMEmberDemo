@@ -16,41 +16,48 @@
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<style type="text/css">
+		#parentView {  
+			margin:10px;
+    		padding:70px;
+    		background:#ccc;
+    	}
+
+	</style>
+
 </head>
 <body>
 	<div id="kmselector">
 	<script type="text/x-handlebars">
-		<h2>Activities</h2>
-		<ul>			
-			{{#each Km.activitysController}}
-			{{#view Km.ActivityListView contentBinding="this"}}	
-				<li>{{content.name}}</li>
-					{{#each content.activitytypes}}
-						<li><a href="#" {{action "clicked" on="click"}}>{{aliasOn this}}</a></li>
-					{{/each}}
-			{{/view}}	
-			{{/each}}
-		</ul>
+		{{view Km.DropDown id="parentView"}}
 	</script>
-	<script type="text/x-handlebars">
-		<h2>Accounts</h2>
-		<ul>
-			{{#each Km.accountsController}}
-			{{#view Km.AccountListView contentBinding="this"}}
-				<li>{{content.name}}</li>
-					{{#each content.accounttypes}}
-					<li><a href="#" {{action "clicked" on="click"}}>{{name}}</a></li>
+	<script type="text/x-handlebars" data-template-name="dropdown">
+
+		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
+			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
+				{{selected.name}}
+				<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					{{#each content}}
+					<li>
+					{{name}}</li>
+					{{#each activitytypes}}
+					<li {{bindAttr class="isActive:active"}}>
+					<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
+						{{/each}}
 					{{/each}}
-				{{/view}}
-			{{/each}}
-		<ul>
+				</ul>
+			{{/view}}
 	</script>
+
 
 	</div>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
 	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="js/libs/ember-0.9.8.1.min.js"></script>
-	<script src="js/app.js"></script>
+	<script src="js/libs/ember-data/ember-data-latest.min.js"></script>
+	<script src="js/dropdowns.js"></script>
 </body>
 </html>
