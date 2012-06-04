@@ -37,7 +37,7 @@
 	</script>
 	<script type="text/x-handlebars" data-template-name="kmdropdown">
 		<form id="kmselector" class="form-inline">
-			<p>I want infornmation about:</p>
+			<p>I need to complete a task or get more information related to:</p>
 		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
 			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedActivity.name}}

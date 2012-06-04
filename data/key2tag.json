@@ -1,0 +1,486 @@
+[
+	{
+		"keypair" : 11.11,
+		"tag"     : "New Account Roth IRA"
+	},	
+	{
+		"keypair" : 11.12,
+		"tag"     : "New AccountTraditional IRA"
+	},
+	{
+		"keypair" : 11.21,
+		"tag"     : "New Account CollegeAmerica 529"
+	},
+	{
+		"keypair" : 11.22,
+		"tag"     : "New Account Coverdale ESA"
+	},
+	{
+		"keypair" : 11.31,
+		"tag"     : "New Account Individual"
+	},
+	{
+		"keypair" : 11.32,
+		"tag"     : "New Account Joint"
+	},
+	{
+		"keypair" : 11.33,
+		"tag"     : "New Account UGMA/UTMA"
+	},
+	{
+		"keypair" : 11.41,
+		"tag"     : "New Account SEP IRA"
+	},
+	{
+		"keypair" : 11.42,
+		"tag"     : "New Account Simple IRA"
+	},
+	{
+		"keypair" : 11.43,
+		"tag"     : "New Account SARSEP IRA"
+	},
+	{
+		"keypair" : 11.44,
+		"tag"     : "New Account 403(b)"
+	},
+	{
+		"keypair" : 21.11,
+		"tag"     : "Investments/Contributions Roth IRA"
+	},	
+	{
+		"keypair" : 21.12,
+		"tag"     : "Investments/Contributions Traditional IRA"
+	},
+	{
+		"keypair" : 21.21,
+		"tag"     : "Investments/Contributions CollegeAmerica 529"
+	},
+	{
+		"keypair" : 21.22,
+		"tag"     : "Investments/Contributions Coverdale ESA"
+	},
+	{
+		"keypair" : 21.31,
+		"tag"     : "Investments/Contributions Individual"
+	},
+	{
+		"keypair" : 21.32,
+		"tag"     : "Investments/Contributions Joint"
+	},
+	{
+		"keypair" : 21.33,
+		"tag"     : "Investments/Contributions UGMA/UTMA"
+	},
+	{
+		"keypair" : 21.41,
+		"tag"     : "Investments/Contributions SEP IRA"
+	},
+	{
+		"keypair" : 21.42,
+		"tag"     : "Investments/Contributions Simple IRA"
+	},
+	{
+		"keypair" : 21.43,
+		"tag"     : "Investments/Contributions SARSEP IRA"
+	},
+	{
+		"keypair" : 21.44,
+		"tag"     : "Investments/Contributions 403(b)"
+	}	{
+		"keypair" : 22.11,
+		"tag"     : "Withdrawals/Distributions Roth IRA"
+	},	
+	{
+		"keypair" : 22.12,
+		"tag"     : "Withdrawals/Distributions Traditional IRA"
+	},
+	{
+		"keypair" : 22.21,
+		"tag"     : "Withdrawals/Distributions CollegeAmerica 529"
+	},
+	{
+		"keypair" : 22.22,
+		"tag"     : "Withdrawals/Distributions Coverdale ESA"
+	},
+	{
+		"keypair" : 22.31,
+		"tag"     : "Withdrawals/Distributions Individual"
+	},
+	{
+		"keypair" : 22.32,
+		"tag"     : "Withdrawals/Distributions Joint"
+	},
+	{
+		"keypair" : 22.33,
+		"tag"     : "Withdrawals/Distributions UGMA/UTMA"
+	},
+	{
+		"keypair" : 22.41,
+		"tag"     : "Withdrawals/Distributions SEP IRA"
+	},
+	{
+		"keypair" : 22.42,
+		"tag"     : "Withdrawals/Distributions Simple IRA"
+	},
+	{
+		"keypair" : 22.43,
+		"tag"     : "Withdrawals/Distributions SARSEP IRA"
+	},
+	{
+		"keypair" : 22.44,
+		"tag"     : "Withdrawals/Distributions 403(b)"
+	},
+	{
+		"keypair" : 23.11,
+		"tag"     : "Exchanges Roth IRA"
+	},	
+	{
+		"keypair" : 23.12,
+		"tag"     : "Exchanges Traditional IRA"
+	},
+	{
+		"keypair" : 23.21,
+		"tag"     : "Exchanges CollegeAmerica 529"
+	},
+	{
+		"keypair" : 23.22,
+		"tag"     : "Exchanges Coverdale ESA"
+	},
+	{
+		"keypair" : 23.31,
+		"tag"     : "Exchanges Individual"
+	},
+	{
+		"keypair" : 23.32,
+		"tag"     : "Exchanges Joint"
+	},
+	{
+		"keypair" : 23.33,
+		"tag"     : "Exchanges UGMA/UTMA"
+	},
+	{
+		"keypair" : 23.41,
+		"tag"     : "Exchanges SEP IRA"
+	},
+	{
+		"keypair" : 23.42,
+		"tag"     : "Exchanges Simple IRA"
+	},
+	{
+		"keypair" : 23.43,
+		"tag"     : "Exchanges SARSEP IRA"
+	},
+	{
+		"keypair" : 23.44,
+		"tag"     : "Exchanges 403(b)"
+	},
+	{
+		"keypair" : 24.11,
+		"tag"     : "Rebalances Roth IRA"
+	},	
+	{
+		"keypair" : 24.12,
+		"tag"     : "Rebalances Traditional IRA"
+	},
+	{
+		"keypair" : 24.21,
+		"tag"     : "Rebalances CollegeAmerica 529"
+	},
+	{
+		"keypair" : 24.22,
+		"tag"     : "Rebalances Coverdale ESA"
+	},
+	{
+		"keypair" : 24.31,
+		"tag"     : "Rebalances Individual"
+	},
+	{
+		"keypair" : 24.32,
+		"tag"     : "Rebalances Joint"
+	},
+	{
+		"keypair" : 24.33,
+		"tag"     : "Rebalances UGMA/UTMA"
+	},
+	{
+		"keypair" : 24.41,
+		"tag"     : "Rebalances SEP IRA"
+	},
+	{
+		"keypair" : 24.42,
+		"tag"     : "Rebalances Simple IRA"
+	},
+	{
+		"keypair" : 24.43,
+		"tag"     : "Rebalances SARSEP IRA"
+	},
+	{
+		"keypair" : 24.44,
+		"tag"     : "Rebalances 403(b)"
+	},
+	{
+		"keypair" : 31.11,
+		"tag"     : "Transfers and rollovers/Transfers Roth IRA"
+	},	
+	{
+		"keypair" : 31.12,
+		"tag"     : "Transfers and rollovers/Transfers Traditional IRA"
+	},
+	{
+		"keypair" : 31.21,
+		"tag"     : "Transfers and rollovers/Transfers CollegeAmerica 529"
+	},
+	{
+		"keypair" : 31.22,
+		"tag"     : "Transfers and rollovers/Transfers Coverdale ESA"
+	},
+	{
+		"keypair" : 31.31,
+		"tag"     : "Transfers and rollovers/Transfers Individual"
+	},
+	{
+		"keypair" : 31.32,
+		"tag"     : "Transfers and rollovers/Transfers Joint"
+	},
+	{
+		"keypair" : 31.33,
+		"tag"     : "Transfers and rollovers/Transfers UGMA/UTMA"
+	},
+	{
+		"keypair" : 31.41,
+		"tag"     : "Transfers and rollovers/Transfers SEP IRA"
+	},
+	{
+		"keypair" : 31.42,
+		"tag"     : "Transfers and rollovers/Transfers Simple IRA"
+	},
+	{
+		"keypair" : 31.43,
+		"tag"     : "Transfers and rollovers/Transfers SARSEP IRA"
+	},
+	{
+		"keypair" : 31.44,
+		"tag"     : "Transfers and rollovers/Transfers 403(b)"
+	},
+	{
+		"keypair" : 32.11,
+		"tag"     : "Roth conversions Roth IRA"
+	},	
+	{
+		"keypair" : 32.12,
+		"tag"     : "Roth conversions Traditional IRA"
+	},
+	{
+		"keypair" : 32.21,
+		"tag"     : "Roth conversions CollegeAmerica 529"
+	},
+	{
+		"keypair" : 32.22,
+		"tag"     : "Roth conversions Coverdale ESA"
+	},
+	{
+		"keypair" : 32.31,
+		"tag"     : "Roth conversions Individual"
+	},
+	{
+		"keypair" : 32.32,
+		"tag"     : "Roth conversions Joint"
+	},
+	{
+		"keypair" : 32.33,
+		"tag"     : "Roth conversions UGMA/UTMA"
+	},
+	{
+		"keypair" : 32.41,
+		"tag"     : "Roth conversions SEP IRA"
+	},
+	{
+		"keypair" : 32.42,
+		"tag"     : "Roth conversions Simple IRA"
+	},
+	{
+		"keypair" : 32.43,
+		"tag"     : "Roth conversions SARSEP IRA"
+	},
+	{
+		"keypair" : 32.44,
+		"tag"     : "Roth conversions 403(b)"
+	},
+	{
+		"keypair" : 41.11,
+		"tag"     : "Dividend and capital gain options Roth IRA"
+	},	
+	{
+		"keypair" : 41.12,
+		"tag"     : "Dividend and capital gain options Traditional IRA"
+	},
+	{
+		"keypair" : 41.21,
+		"tag"     : "Dividend and capital gain options CollegeAmerica 529"
+	},
+	{
+		"keypair" : 41.22,
+		"tag"     : "Dividend and capital gain options Coverdale ESA"
+	},
+	{
+		"keypair" : 41.31,
+		"tag"     : "Dividend and capital gain options Individual"
+	},
+	{
+		"keypair" : 41.32,
+		"tag"     : "Dividend and capital gain options Joint"
+	},
+	{
+		"keypair" : 41.33,
+		"tag"     : "Dividend and capital gain options UGMA/UTMA"
+	},
+	{
+		"keypair" : 41.41,
+		"tag"     : "Dividend and capital gain options SEP IRA"
+	},
+	{
+		"keypair" : 41.42,
+		"tag"     : "Dividend and capital gain options Simple IRA"
+	},
+	{
+		"keypair" : 41.43,
+		"tag"     : "Dividend and capital gain options SARSEP IRA"
+	},
+	{
+		"keypair" : 41.44,
+		"tag"     : "Dividend and capital gain options 403(b)"
+	},
+	{
+		"keypair" : 51.11,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Roth IRA"
+	},	
+	{
+		"keypair" : 51.12,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Traditional IRA"
+	},
+	{
+		"keypair" : 51.21,
+		"tag"     : "Tax forms and cost basis options/Tax Forms CollegeAmerica 529"
+	},
+	{
+		"keypair" : 51.22,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Coverdale ESA"
+	},
+	{
+		"keypair" : 51.31,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Individual"
+	},
+	{
+		"keypair" : 51.32,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Joint"
+	},
+	{
+		"keypair" : 51.33,
+		"tag"     : "Tax forms and cost basis options/Tax Forms UGMA/UTMA"
+	},
+	{
+		"keypair" : 51.41,
+		"tag"     : "Tax forms and cost basis options/Tax Forms SEP IRA"
+	},
+	{
+		"keypair" : 51.42,
+		"tag"     : "Tax forms and cost basis options/Tax Forms Simple IRA"
+	},
+	{
+		"keypair" : 51.43,
+		"tag"     : "Tax forms and cost basis options/Tax Forms SARSEP IRA"
+	},
+	{
+		"keypair" : 51.44,
+		"tag"     : "Tax forms and cost basis options/Tax Forms 403(b)"
+	},
+	{
+		"keypair" : 52.11,
+		"tag"     : "Statements and literature Roth IRA"
+	},	
+	{
+		"keypair" : 52.12,
+		"tag"     : "Statements and literature Traditional IRA"
+	},
+	{
+		"keypair" : 52.21,
+		"tag"     : "Statements and literature CollegeAmerica 529"
+	},
+	{
+		"keypair" : 52.22,
+		"tag"     : "Statements and literature Coverdale ESA"
+	},
+	{
+		"keypair" : 52.31,
+		"tag"     : "Statements and literature Individual"
+	},
+	{
+		"keypair" : 52.32,
+		"tag"     : "Statements and literature Joint"
+	},
+	{
+		"keypair" : 52.33,
+		"tag"     : "Statements and literature UGMA/UTMA"
+	},
+	{
+		"keypair" : 52.41,
+		"tag"     : "Statements and literature SEP IRA"
+	},
+	{
+		"keypair" : 52.42,
+		"tag"     : "Statements and literature Simple IRA"
+	},
+	{
+		"keypair" : 52.43,
+		"tag"     : "Statements and literature SARSEP IRA"
+	},
+	{
+		"keypair" : 52.44,
+		"tag"     : "Statements and literature 403(b)"
+	},
+	{
+		"keypair" : 53.11,
+		"tag"     : "Client information Roth IRA"
+	},	
+	{
+		"keypair" : 53.12,
+		"tag"     : "Client information Traditional IRA"
+	},
+	{
+		"keypair" : 53.21,
+		"tag"     : "Client information CollegeAmerica 529"
+	},
+	{
+		"keypair" : 53.22,
+		"tag"     : "Client information Coverdale ESA"
+	},
+	{
+		"keypair" : 53.31,
+		"tag"     : "Client information Individual"
+	},
+	{
+		"keypair" : 53.32,
+		"tag"     : "Client information Joint"
+	},
+	{
+		"keypair" : 53.33,
+		"tag"     : "Client information UGMA/UTMA"
+	},
+	{
+		"keypair" : 53.41,
+		"tag"     : "Client information SEP IRA"
+	},
+	{
+		"keypair" : 53.42,
+		"tag"     : "Client information Simple IRA"
+	},
+	{
+		"keypair" : 53.43,
+		"tag"     : "Client information SARSEP IRA"
+	},
+	{
+		"keypair" : 53.44,
+		"tag"     : "Client information 403(b)"
+	}
+
+]
