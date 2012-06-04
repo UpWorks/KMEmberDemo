@@ -2,7 +2,7 @@
 * Application 
 **************************/
 Km = Em.Application.create({
-	rootElement: $('#kmselector')
+	rootElement: $('#kmapp')
 });
 
 /************************** 
@@ -14,6 +14,14 @@ Km.Activity = Em.Object.extend({
 
 Km.Account = Em.Object.extend({
 
+});
+
+Km.curentOverview = Em.Object.extend({
+	content. null,
+
+	retrieveCurrentOverview: function() {
+		
+	}
 });
 
 /************************** 
@@ -41,6 +49,10 @@ Km.accountsController = Em.ArrayProxy.create({
 			});
 		});
 	}
+});
+
+Km.overviewController = Em.ArrayProxy.create({
+
 });
 
 Km.activitysController.loadActivities();
@@ -177,12 +189,22 @@ Km.DropDowns = Em.View.extend({
 	goButton: Em.View.extend({
 		go: function(e) {
 			console.log(Km.selectedActivityController.isError('parentID'));
+			this.loadOverview();
 			
+		},
+		loadOverview: function () {
+			var str ="This is an overview";
+			return str;
+
 		}
 	})
-
 	
 });
+
+Km.OverView = Em.View.extend({
+
+});
+
 
 
 /************************** 

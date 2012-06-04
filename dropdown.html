@@ -31,12 +31,13 @@
 
 </head>
 <body>
-	<form id="kmselector" class="form-inline">
+	<div id="kmapp">
 	<script type="text/x-handlebars">
-	<p>I want infornmation about:</p>
 		{{view Km.DropDowns id="parentView" class="btn-toolbar"}}
 	</script>
 	<script type="text/x-handlebars" data-template-name="kmdropdown">
+		<form id="kmselector" class="form-inline">
+			<p>I want infornmation about:</p>
 		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
 			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedActivity.name}}
@@ -70,10 +71,15 @@
 		{{#view goButton class="btn-group"}}
 			<a href="#" class="btn btn-success" {{action "go" on="click"}}>Go</a>
 			{{/view}}
+		</form>
+	</script>
+	<script type="text/x-handlebars">
+		{{#view Km.OverView id="kmoverview"}}
+		<p>Overview</p>
+		{{/view}}
 	</script>
 
-
-	</form>
+</div>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
 	<script src="js/libs/bootstrap.min.js"></script>
