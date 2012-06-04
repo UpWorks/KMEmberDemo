@@ -17,7 +17,7 @@ Km.Account = Em.Object.extend({
 });
 
 Km.curentOverview = Em.Object.extend({
-	content. null,
+	content: null,
 
 	retrieveCurrentOverview: function() {
 		
@@ -62,7 +62,7 @@ Km.accountsController.loadAccounts();
 Km.selectedActivityController = Em.Object.create({
 	parentID: null,
 	childID: null,
-	isError: function(property) {
+	isError: function (property) {
 		return !Em.empty(this.get(property));
 		},
 
@@ -71,7 +71,10 @@ Km.selectedActivityController = Em.Object.create({
 
 Km.selectedAccountController = Em.Object.create({
 	parentID: null,
-	childID: null
+	childID: null,
+	isError: function (property) {
+		return !Em.empty(this.get(property));
+	}
 });
 
 
