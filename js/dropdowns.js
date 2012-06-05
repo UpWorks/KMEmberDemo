@@ -12,17 +12,11 @@ Km.Activity = Em.Object.extend({
 
 });
 
+
 Km.Account = Em.Object.extend({
 
 });
 
-Km.curentOverview = Em.Object.extend({
-	content: null,
-
-	retrieveCurrentOverview: function() {
-		
-	}
-});
 
 /************************** 
 /* Controllers 
@@ -51,29 +45,49 @@ Km.accountsController = Em.ArrayProxy.create({
 	}
 });
 
-Km.overviewController = Em.ArrayProxy.create({
-
-});
-
 Km.activitysController.loadActivities();
 
 Km.accountsController.loadAccounts();
 
 Km.selectedActivityController = Em.Object.create({
 	parentID: null,
+
 	childID: null,
-	isError: function (property) {
-		return !Em.empty(this.get(property));
-		},
 
+	isValid: function () {
+		return !Em.empty(this.get('childID')) && !Em.empty(this.get('parentID'));
+	},
 
+	getKey: function () {
+		if(this.isValid) {
+			var actKey = String(this.get('parentID')) + String(this.get('childID'));
+			return actKey;
+		}
+	}
 });
 
 Km.selectedAccountController = Em.Object.create({
 	parentID: null,
+
 	childID: null,
-	isError: function (property) {
-		return !Em.empty(this.get(property));
+
+	isValid: function () {
+		return !Em.empty(this.get('childID')) && !Em.empty(this.get('parentID'));
+	},
+
+	getKey: function () {
+		if(this.isValid) {
+			var actKey = String(this.get('parentID')) + String(this.get('childID'));
+			return actKey;
+		}
+	}
+});
+
+Km.overviewController = Em.Object.create({
+	tag: null,
+
+	reset: function() {
+		this.set('tag', null);
 	}
 });
 
@@ -84,6 +98,8 @@ Km.selectedAccountController = Em.Object.create({
 Km.DropDowns = Em.View.extend({
 	
 	templateName: 'kmdropdown',
+
+	debug: false,
 
 	activitySelect: Em.View.extend({
 		
@@ -96,6 +112,7 @@ Km.DropDowns = Em.View.extend({
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
+			e.preventDefault();
 		},
 
 		didInsertElement: function () {
@@ -106,32 +123,35 @@ Km.DropDowns = Em.View.extend({
 		},
 
 		select: function (e) {
-
 			var parentID = e.context.parent_id,
-					childID = e.context.id
-					parentActivity = Km.activitysController.objectAt(parentID-1),
-					parentActivityName = parentActivity.name,
-					selected = e.context;
+				childID = e.context.id
+				selected = e.context,
+				overview = Km.overviewController;
 
-			e.preventDefault();
 
-			console.log(parentID);
 
-			console.log(childID);
+			overview.reset();
 
 			Km.selectedActivityController.set('parentID', parentID);
 
-			Km.selectedActivityController.set('childID', parentID);
-
-			console.log(parentActivityName + ' >> ' + parentActivity.activitynames[childID-1].name);
-
-			console.log('ParentID ' + Km.selectedActivityController.parentID + ' ChildID ' + Km.selectedActivityController.childID),
+			Km.selectedActivityController.set('childID', childID);
 
 			this.content.setEach('isActive', false);
-
 			this.set('selectedActivity', selected);
 
 			this.set('isOpen', false);
+
+			e.preventDefault();
+
+			if (this._parentView.debug) {
+				var parentActivity = Km.activitysController.objectAt(parentID-1),
+					parentActivityName = parentActivity.name;
+				console.log(parentID);
+				console.log(childID);
+				console.log(parentActivityName + ' >> ' + parentActivity.activitynames[childID-1].name);
+				console.log('ParentID ' + Km.selectedActivityController.parentID + 
+							' ChildID ' + Km.selectedActivityController.childID);
+			}
 			
 		}
 
@@ -148,6 +168,7 @@ Km.DropDowns = Em.View.extend({
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
+			e.preventDefault();
 		},
 
 		didInsertElement: function () {
@@ -160,52 +181,76 @@ Km.DropDowns = Em.View.extend({
 		select: function (e) {
 
 			var parentID = e.context.parent_id,
-					childID = e.context.id
-					parentAccount = Km.accountsController.objectAt(parentID-1),
-					parentAccountName = parentAccount.name,
-					selected = e.context;
+				childID = e.context.id
+				selected = e.context,
+				overview = Km.overviewController;
 
 			e.preventDefault();
 
-			console.log(parentID);
-
-			console.log(childID);
+			overview.reset();
 
 			Km.selectedAccountController.set('parentID', parentID);
 
-			Km.selectedAccountController.set('childID', parentID);
-
-			console.log(parentAccountName + ' >> ' + parentAccount.accounttypes[childID-1].name);
-
-			console.log('ParentID ' + Km.selectedAccountController.parentID + ' ChildID ' + Km.selectedAccountController.childID),
+			Km.selectedAccountController.set('childID', childID);
 
 			this.content.setEach('isActive', false);
 
 			this.set('selectedAccount', selected);
 
 			this.set('isOpen', false);
+
+			if (this._parentView.debug) {
+
+				var parentAccount = Km.accountsController.objectAt(parentID-1),
+					parentAccountName = parentAccount.name;
+
+				console.log(parentID);
+				console.log(childID);
+				console.log(parentAccountName + ' >> ' + parentAccount.accounttypes[childID-1].name);
+				console.log('ParentID ' + Km.selectedAccountController.parentID + 
+							' ChildID ' + Km.selectedAccountController.childID);
+
+			}
 			
 		}
 
 	}),
 
 	goButton: Em.View.extend({
-		go: function(e) {
-			console.log(Km.selectedActivityController.isError('parentID'));
-			this.loadOverview();
-			
-		},
-		loadOverview: function () {
-			var str ="This is an overview";
-			return str;
+		
+		isDisabled: true,
 
+		go: function(e) {
+			var activityIsValid = Km.selectedActivityController.isValid(),
+				accountIsValid  = Km.selectedAccountController.isValid();
+			if (activityIsValid 
+					&& accountIsValid) {
+				var actKey = Km.selectedActivityController.getKey(),
+					accntKey = Km.selectedAccountController.getKey();
+				this.loadOverview(actKey, accntKey);
+			}				
+		},
+
+		loadOverview: function (actKey, accntKey) {
+
+			var keyPair = actKey + '.' + accntKey;
+			$.getJSON('data/key2tag.json', function(data) {
+				$(data).each(function(i,p) {
+					if (keyPair === String(p.keypair)) {
+						console.log(p.tag);
+						Km.overviewController.set('tag', p.tag)
+
+					}
+				});
+			});
 		}
 	})
 	
 });
 
 Km.OverView = Em.View.extend({
-
+	templateName: 'overview',
+	contentBinding: 'Km.overviewController'
 });
 
 

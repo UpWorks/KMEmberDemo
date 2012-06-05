@@ -44,6 +44,7 @@
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
+
 					{{#each content}}
 					<li><b>{{name}}</b></li>
 					{{#each activitynames}}
@@ -68,14 +69,14 @@
 					{{/each}}
 				</ul>
 			{{/view}}
-		{{#view goButton class="btn-group"}}
+		{{#view goButton class="btn-group" classBinding="isDisabled:disabled"}}
 			<a href="#" class="btn btn-success" {{action "go" on="click"}}>Go</a>
 			{{/view}}
 		</form>
 	</script>
 	<script type="text/x-handlebars">
-		{{#view Km.OverView id="kmoverview"}}
-		<p>Overview</p>
+		{{#view Km.OverView}}
+		<p>{{content.tag}}</p>
 		{{/view}}
 	</script>
 
