@@ -228,7 +228,8 @@ Km.DropDowns = Em.View.extend({
 				var actKey = Km.selectedActivityController.getKey(),
 					accntKey = Km.selectedAccountController.getKey();
 				this.loadOverview(actKey, accntKey);
-			}				
+			}
+			e.preventDefault();			
 		},
 
 		loadOverview: function (actKey, accntKey) {
