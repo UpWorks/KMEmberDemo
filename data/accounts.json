@@ -1,32 +1,88 @@
 [
-	{ "id" : 1, "name" : "Individual retirement", "accounttypes" : [
-		{ "id" : 1, "name" : "Roth IRA",
-			"parent_id": 1},
-		{ "id" : 2, "name" : "Traditional IRA",
-			"parent_id": 1}
-	] },
-	{ "id" : 2, "name" : "Education Savings", "accounttypes" : [
-		{ "id" : 1, "name" : "CollegeAmerica 529",
-			"parent_id": 2},
-		{ "id" : 2, "name" : "Coverdale ESA",
-			"parent_id": 2}
-	] },
-	{ "id" : 3, "name" : "Non-retirement", "accounttypes" : [
-		{ "id" : 1, "name" : "Individual",
-			"parent_id": 3},
-		{ "id" : 2, "name" : "Joint",
-			"parent_id": 3},
-		{ "id" : 3, "name" : "UGMA/UTMA",
-			"parent_id": 3}
-	] },
-	{ "id" : 4, "name" : "Employer-sponsored retirement plans", "accounttypes" : [
-		{ "id" : 1, "name" : "SEP IRA",
-			"parent_id": 4},
-		{ "id" : 2, "name" : "SIMPLE IRA",
-			"parent_id": 4},
-		{ "id" : 3, "name" : "SARSEP IRA",
-			"parent_id": 4},
-		{ "id" : 4, "name" : "403(b)",
-			"parent_id": 4}
-	] }
+	{ 
+		"id" : 1,
+		"name" : "Individual retirement",
+		"accounttypes" : [
+		{ 
+			"id" : 1,
+			"name" : "Roth IRA",
+			"parent_id": 1,
+			"hideonactivity_ids" : null
+		},
+		{ 
+			"id" : 2,
+			"name" : "Traditional IRA",
+			"parent_id": 1,
+			"hideonactivity_ids" : null
+		}] 
+	},
+	{ 
+		"id" : 2,
+		"name" : "Education Savings",
+		"accounttypes" : [
+		{ 
+			"id" : 1,
+			"name" : "CollegeAmerica 529",
+			"parent_id": 2,
+			"hideonactivity_ids" : [3.2,4.1]
+		},
+		{ 
+			"id" : 2,
+			"name" : "Coverdale ESA",
+			"parent_id": 2,
+			"hideonactivity_ids" : [3.2,4.1]
+		}]
+	},
+	{ 
+		"id" : 3,
+		"name" : "Non-retirement",
+		"accounttypes" : [
+		{ 
+			"id" : 1,
+			"name" : "Individual",
+			"parent_id": 3,
+			"hideonactivity_ids" : [3.2]
+		},
+		{
+			"id" : 2,
+			"name" : "Joint",
+			"parent_id": 3,
+			"hideonactivity_ids" : [3.2]
+		},
+		{ 
+			"id" : 3,
+			"name" : "UGMA/UTMA",
+			"parent_id": 3,
+			"hideonactivity_ids" : [3.2]
+		}] 
+	},
+	{ 
+		"id" : 4,
+		"name" : "Employer-sponsored retirement plans",
+		"accounttypes" : [
+		{ 
+			"id" : 1,
+			"name" : "SEP IRA",
+			"parent_id": 4,
+			"hideonactivity_ids" : null
+		},
+		{ 
+			"id" : 2,
+			"name" : "SIMPLE IRA",
+			"parent_id": 4,
+			"hideonactivity_ids" : null
+		},
+		{ 
+			"id" : 3,
+			"name" : "SARSEP IRA",
+			"parent_id": 4,
+			"hideonactivity_ids" : null
+		},
+		{ 
+			"id" : 4,
+			"name" : "403(b)",
+			"parent_id": 4,
+			"hideonactivity_ids" : [3.1,3.2]
+		}] 
+	}
 ]

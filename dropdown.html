@@ -25,8 +25,15 @@
 			.btn-group {
 				margin-right: 75px;
 			}
-
-
+			.wide {
+				width: 20em;
+			}
+			a span:first-child {
+				display: none;
+			}
+			.show {
+				display:block !important; 
+			}
 	</style>
 
 </head>
@@ -39,37 +46,40 @@
 		<form id="kmselector" class="form-inline">
 			<p>I need to complete a task or get more information related to:</p>
 		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
-			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
+			<a class="btn dropdown-toggle btn-small btn1" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedActivity.name}}
 				<span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu">
-
+				<ul class="dropdown-menu wide">
 					{{#each content}}
-					<li><b>{{name}}</b></li>
-					{{#each activitynames}}
-					<li>
-					<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
+						<li><b>{{name}}</b></li>
+						{{#each activitynames}}
+							<li {{bindAttr class="isHidden:hide"}}>
+							<a href="#" {{action "select" on="click"}}>
+							<span {{bindAttr class="showAlias:show"}}>{{aliasname}}</span>
+							<span {{bindAttr class="showAlias:hide"}}>{{name}}</span>
+							</a>
+							</li>
 						{{/each}}
 					{{/each}}
 				</ul>
 			{{/view}}
 		{{#view accountSelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
-			<a class="btn dropdown-toggle btn-small" {{action "dropdownToggle" on="click"}} href="#">
+			<a class="btn dropdown-toggle btn-small btn2" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedAccount.name}}
 				<span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu wide">
 					{{#each content}}
-					<li><b>{{name}}</b></li>
-					{{#each accounttypes}}
-					<li>
-					<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
+					<li><b>{{name}}</b></li>			
+						{{#each accounttypes}}	
+							<li {{bindAttr class="isHidden:hide"}}>
+							<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
 						{{/each}}
 					{{/each}}
 				</ul>
 			{{/view}}
-		{{#view goButton class="btn-group" classBinding="isDisabled:disabled"}}
+		{{#view goButton class="btn-group"}}
 			<a href="#" class="btn btn-success" {{action "go" on="click"}}>Go</a>
 			{{/view}}
 		</form>
