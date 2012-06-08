@@ -2,6 +2,7 @@
 * Application 
 **************************/
 Km = Em.Application.create({
+	//assign app to El
 	rootElement: $('#kmapp')
 });
 
@@ -11,7 +12,23 @@ Km = Em.Application.create({
 Km.Activity = Em.Object.extend({
 	id: null,
 	name: null,
-	activitynames: []
+	activitynames: [],
+	isHidden: false,
+	hideThis: function () {
+		var actArr = this.get('activitynames'),
+				actCnt = actArr.length,
+				actHiddenCnt = 0;
+		actArr.forEach(function(data) {
+			if (data.isHidden) {
+				actHiddenCnt ++;
+			}
+		});
+		if (actHiddenCnt === actCnt) {
+			return this.set('isHidden', true);
+		} else {
+			return this.set('isHidden', false);
+		}
+	}.observes('Km.selectedAccountController.id')
 });
 
 Km.ActivityName = Em.Object.extend({
@@ -27,7 +44,7 @@ Km.ActivityName = Em.Object.extend({
 		var hideArr = this.get('hideonaccount_ids'),
 				selectedKey = Km.selectedAccountController.getAccountKey();
 		if (hideArr !== null 
-								&& $.inArray(parseFloat(selectedKey), hideArr) >= 0) {
+				&& hideArr.contains(parseFloat(selectedKey))) {
 			return this.set('isHidden', true);
 		} else {
 			return this.set('isHidden', false);
@@ -37,7 +54,7 @@ Km.ActivityName = Em.Object.extend({
 		var showArr = this.get('showaliasonid'),
 				selectedKey = Km.selectedAccountController.getAccountKey();
 		if (showArr !== null 
-								&& $.inArray(parseFloat(selectedKey), showArr) >= 0) {
+				&& showArr.contains(parseFloat(selectedKey))) {
 			return this.set('showAlias', true);
 		} else {
 			return this.set('showAlias', false);
@@ -61,14 +78,13 @@ Km.AccountType = Em.Object.extend({
 		var hideArr = this.get('hideonactivity_ids'),
 				selectedKey = Km.selectedActivityController.getActivityKey();
 		if (hideArr !== null 
-								&& $.inArray(parseFloat(selectedKey), hideArr) >= 0) {
+				&& hideArr.contains(parseFloat(selectedKey))) {
 			return this.set('isHidden', true);
 		} else {
 			return this.set('isHidden', false);
 		}
 	}.observes('Km.selectedActivityController.id')
 });
-
 
 /************************** 
 /* Controllers 
@@ -139,28 +155,21 @@ Km.accountsController = Em.ArrayProxy.create({
 
 Km.selectedActivityController = Em.Object.create({
 	id: null,
-
 	name: null,
-
 	aliasname: null,
-
 	showaliasonid: [],
-
 	parent_id: null,
-
 	hideonactivity_ids: [],
-
 	isValid: function () {
-		return !Em.empty(this.get('id')) && !Em.empty(this.get('parent_id'));
+		return !Em.empty(this.get('id')) 
+				&& !Em.empty(this.get('parent_id'));
 	},
-
 	getKey: function () {
 		if(this.isValid) {
 			var key = String(this.get('parent_id')) + String(this.get('id'));
 			return key;
 		}
 	},
-
 	getActivityKey: function () {
 		if(this.isValid) {
 			var key = String(this.get('parent_id')) + '.' + String(this.get('id'));
@@ -171,24 +180,19 @@ Km.selectedActivityController = Em.Object.create({
 
 Km.selectedAccountController = Em.Object.create({
 	id: null,
-
 	name: null,
-
 	parent_id: null,
-
 	hideonactivity_ids: [],
-
 	isValid: function () {
-		return !Em.empty(this.get('id')) && !Em.empty(this.get('parent_id'));
+		return !Em.empty(this.get('id')) 
+				&& !Em.empty(this.get('parent_id'));
 	},
-
 	getKey: function () {
 		if(this.isValid) {
 			var key = String(this.get('parent_id')) + String(this.get('id'));
 			return key;
 		}
 	},
-
 	getAccountKey: function () {
 		if(this.isValid) {
 			var key = String(this.get('parent_id')) + '.' + String(this.get('id'));
@@ -211,13 +215,9 @@ Km.overviewController = Em.Object.create({
 Km.DropDowns = Em.View.extend({
 	
 	templateName: 'kmdropdown',
-
 	debug: false,
-
-	activitySelect: Em.View.extend({
-		
-		isOpen: false,
-		
+	activitySelect: Em.View.extend({	
+		isOpen: false,	
 		selectedActivity: Em.Object.create({
 			id: null,
 			name: 'Select Activity',
@@ -225,23 +225,18 @@ Km.DropDowns = Em.View.extend({
 			showaliasonid: [],
 			parent_id: null,
 			hideonactivity_ids: []
-		}),
-		
-		contentBinding: 'Km.activitysController',
-
+		}),	
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
 			e.preventDefault();
 		},
-
 		didInsertElement: function () {
 			var self = this;
 			$('body, a.btn2').on('click', function() {
 				self.set('isOpen', false);
 			});
 		},
-
 		select: function (e) {
 			var id = e.context.id,
 				name = e.context.name,
@@ -251,13 +246,9 @@ Km.DropDowns = Em.View.extend({
 				hideonactivity_ids = e.context.hideonactivity_ids,
 				selected = e.context,
 				overview = Km.overviewController;
-
 			overview.reset();
-
 			this.content.setEach('isActive', false);
-
 			this.set('selectedActivity', selected);
-
 			Km.selectedActivityController.setProperties({
 				id: id,
 				name: name,
@@ -266,11 +257,8 @@ Km.DropDowns = Em.View.extend({
 				parent_id: parent_id,
 				hideonactivity_ids: hideonactivity_ids
 			});
-
 			this.set('isOpen', false);
-
 			e.preventDefault();
-
 			if (this._parentView.debug) {
 				var parentActivity = Km.activitysController.objectAt(parent_id-1),
 					parentActivityName = parentActivity.name;
@@ -286,60 +274,44 @@ Km.DropDowns = Em.View.extend({
 		}
 	}),
 
-	accountSelect: Em.View.extend({
-		
+	accountSelect: Em.View.extend({	
 		isOpen: false,
-
 		selectedAccount: Em.Object.create({
 			id: null,
 			name: 'Select Account',
 			parent_id: null
-		}),
-		
-		contentBinding: 'Km.accountsController',
-
+		}),		
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
 			e.preventDefault();
 		},
-
 		didInsertElement: function () {
 			var self = this;
 			$('body, a.btn1').on('click', function() {
 				self.set('isOpen', false);
 			});
 		},
-
 		select: function (e) {
 
 			var id = e.context.id,
-				name = e.context.name,
-				parent_id = e.context.parent_id,
-				selected = e.context,
-				hideonactivity_ids = e.context.hideonactivity_ids,
-				overview = Km.overviewController;
-
-
+					name = e.context.name,
+					parent_id = e.context.parent_id,
+					selected = e.context,
+					hideonactivity_ids = e.context.hideonactivity_ids,
+					overview = Km.overviewController;
 			e.preventDefault();
-
 			overview.reset();
-
 			Km.selectedAccountController.setProperties({
 				id: id,
 				name: name,
 				parent_id: parent_id,
 				hideonactivity_ids: hideonactivity_ids
 			});
-
 			this.content.setEach('isActive', false);
-
 			this.set('selectedAccount', selected);
-
 			this.set('isOpen', false);
-
 			if (this._parentView.debug) {
-
 				var parentAccount = Km.accountsController.objectAt(parent_id-1),
 					parentAccountName = parentAccount.name;
 				console.log(parent_id);
@@ -354,13 +326,11 @@ Km.DropDowns = Em.View.extend({
 
 	}),
 
-	goButton: Em.View.extend({
-		
+	goButton: Em.View.extend({	
 		isDisabled: true,
-
 		validCheck: function () {
 			var activityIsValid = Km.selectedActivityController.isValid(),
-				accountIsValid  = Km.selectedAccountController.isValid();
+					accountIsValid  = Km.selectedAccountController.isValid();
 			if (activityIsValid 
 					&& accountIsValid) {
 				return this.set('isDisabled', false);
@@ -368,19 +338,17 @@ Km.DropDowns = Em.View.extend({
 				return this.set('isDisabled', true);
 			}
 		}.observes('Km.selectedAccountController.id', 'Km.selectedActivityController.id'),
-
 		go: function(e) {
 			var activityIsValid = Km.selectedActivityController.isValid(),
 				accountIsValid  = Km.selectedAccountController.isValid();
 			if (activityIsValid 
 					&& accountIsValid) {
 				var actKey = Km.selectedActivityController.getKey(),
-					accntKey = Km.selectedAccountController.getKey();
+						accntKey = Km.selectedAccountController.getKey();
 				this.loadOverview(actKey, accntKey);
 			}
 			e.preventDefault();			
 		},
-
 		loadOverview: function (actKey, accntKey) {
 
 			var keyPair = actKey + '.' + accntKey;
@@ -393,7 +361,6 @@ Km.DropDowns = Em.View.extend({
 			});
 		}
 	})
-	
 });
 
 Km.OverView = Em.View.extend({

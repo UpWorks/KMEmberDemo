@@ -27,6 +27,7 @@
 			}
 			.wide {
 				width: 20em;
+				padding: 1em;
 			}
 			a span:first-child {
 				display: none;
@@ -45,14 +46,14 @@
 	<script type="text/x-handlebars" data-template-name="kmdropdown">
 		<form id="kmselector" class="form-inline">
 			<p>I need to complete a task or get more information related to:</p>
-		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
+		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open" contentBinding="Km.activitysController.content"}}
 			<a class="btn dropdown-toggle btn-small btn1" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedActivity.name}}
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu wide">
 					{{#each content}}
-						<li><b>{{name}}</b></li>
+						<li {{bindAttr class="isHidden:hide"}}><b>{{name}}</b></li>
 						{{#each activitynames}}
 							<li {{bindAttr class="isHidden:hide"}}>
 							<a href="#" {{action "select" on="click"}}>
@@ -64,7 +65,7 @@
 					{{/each}}
 				</ul>
 			{{/view}}
-		{{#view accountSelect tagName="div" class="btn-group" classBinding="isOpen:open"}}
+		{{#view accountSelect tagName="div" class="btn-group" classBinding="isOpen:open" contentBinding="Km.accountsController.content"}}
 			<a class="btn dropdown-toggle btn-small btn2" {{action "dropdownToggle" on="click"}} href="#">
 				{{selectedAccount.name}}
 				<span class="caret"></span>
@@ -93,7 +94,6 @@
 </div>
 
 	<script src="js/libs/jquery-1.7.2.min.js"></script>
-	<script src="js/libs/bootstrap.min.js"></script>
 	<script src="js/libs/ember-0.9.8.1.min.js"></script>
 	<script src="js/dropdowns.js"></script>
 </body>
