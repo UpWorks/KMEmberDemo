@@ -34,7 +34,7 @@ List has a default display state that is mutable based on an activity selection 
 	
 	Mutations:
 
-		Activity type can be hidden from list based on account selection.
+		Activity type can be hidden from list based on activity selection.
 
 Accounts and Child Accounts are loaded via a currently static JSON file (data/accounts.json) with the intent that future versions could contain dynamic JSON response.
 
