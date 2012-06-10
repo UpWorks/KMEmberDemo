@@ -13,7 +13,7 @@
 
 ##Activity Selector - 
 
-This selector displays a hierarchal list of activities and related activity types.
+This selector displays a hierarchical list of activities and related activity types.
 
 List has a default display state showing all activities and activity types that is mutable based on an account selection from the Account Selector.
 	
@@ -28,7 +28,7 @@ Activities and Child Activities are loaded via a currently static JSON file (dat
 
 ##Account Selector -
 
-This selector displays a hierarchal list of accounts and related account types.
+This selector displays a hierarchical list of accounts and related account types.
 
 List has a default display state that is mutable based on an activity selection from the Account Selector.
 	
