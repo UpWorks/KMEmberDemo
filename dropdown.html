@@ -9,8 +9,6 @@
 	<meta name="description" content="Proof of concept for the KM Web Project: Activty/Account Selector">
 	<meta name="author" content="afweb">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +31,7 @@
 				display: none;
 			}
 			.show {
-				display:block !important; 
+				display:inline-block !important; 
 			}
 	</style>
 
@@ -48,7 +46,8 @@
 			<p>I need to complete a task or get more information related to:</p>
 		{{#view activitySelect tagName="div" class="btn-group" classBinding="isOpen:open" contentBinding="Km.activitysController.content"}}
 			<a class="btn dropdown-toggle btn-small btn1" {{action "dropdownToggle" on="click"}} href="#">
-				{{selectedActivity.name}}
+				<span {{bindAttr class="selectedActivity.showAlias:show"}}>{{selectedActivity.aliasname}}</span>
+				<span {{bindAttr class="selectedActivity.showAlias:hide"}}>{{selectedActivity.name}}</span>
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu wide">
