@@ -1,13 +1,13 @@
-/************************** 
-* Application 
+/**************************
+* Application
 **************************/
 Km = Em.Application.create({
 	//assign app to El
 	rootElement: $('#kmapp')
 });
 
-/************************** 
-* Models 
+/**************************
+* Models
 **************************/
 Km.Activity = Em.Object.extend({
 	id: null,
@@ -18,6 +18,7 @@ Km.Activity = Em.Object.extend({
 		var actArr = this.get('activitynames'),
 			actCnt = actArr.length,
 			actHiddenCnt = 0;
+		console.log('Activity.hideThis Fired');
 		actArr.forEach(function(data) {
 			if (data.isHidden) {
 				actHiddenCnt ++;
@@ -43,8 +44,7 @@ Km.ActivityName = Em.Object.extend({
 	hideActivity: function() {
 		var hideArr = this.get('hideonaccount_ids'),
 			selectedKey = Km.selectedAccountController.getAccountKey();
-		if (hideArr !== null 
-				&& hideArr.contains(parseFloat(selectedKey))) {
+		if (hideArr !== null && hideArr.contains(parseFloat(selectedKey))) {
 			return this.set('isHidden', true);
 		} else {
 			return this.set('isHidden', false);
@@ -53,8 +53,7 @@ Km.ActivityName = Em.Object.extend({
 	checkAlias: function () {
 		var showArr = this.get('showaliasonid'),
 			selectedKey = Km.selectedAccountController.getAccountKey();
-		if (showArr !== null 
-				&& showArr.contains(parseFloat(selectedKey))) {
+		if (showArr !== null && showArr.contains(parseFloat(selectedKey))) {
 			return this.set('showAlias', true);
 		} else {
 			return this.set('showAlias', false);
@@ -65,7 +64,26 @@ Km.ActivityName = Em.Object.extend({
 Km.Account = Em.Object.extend({
 	id: null,
 	name: null,
-	accounttypes: []
+	accounttypes: [],
+	isHidden: false,
+	hideThis: function () {
+		var accntArr = this.get('accounttypes'),
+			accntCnt = accntArr.length,
+			accntHiddenCnt = 0;
+		console.log('Account.hideThis Fired');
+			////console.log('account count: ' + accntCnt);
+		accntArr.forEach(function(data) {
+			if (data.isHidden) {
+				accntHiddenCnt ++;
+			}
+		});
+		//console.log('account hidden count: ' + accntHiddenCnt);
+		if (accntHiddenCnt === accntCnt) {
+			return this.set('isHidden', true);
+		} else {
+			return this.set('isHidden', false);
+		}
+	}.observes('Km.selectedActivityController.id')
 });
 
 Km.AccountType = Em.Object.extend({
@@ -77,8 +95,7 @@ Km.AccountType = Em.Object.extend({
 	hideActivity: function() {
 		var hideArr = this.get('hideonactivity_ids'),
 			selectedKey = Km.selectedActivityController.getActivityKey();
-		if (hideArr !== null 
-				&& hideArr.contains(parseFloat(selectedKey))) {
+		if (hideArr !== null && hideArr.contains(parseFloat(selectedKey))) {
 			return this.set('isHidden', true);
 		} else {
 			return this.set('isHidden', false);
@@ -86,9 +103,9 @@ Km.AccountType = Em.Object.extend({
 	}.observes('Km.selectedActivityController.id')
 });
 
-/************************** 
-/* Controllers 
-/**************************/
+/**************************
+* Controllers
+**************************/
 Km.activitysController = Em.ArrayProxy.create({
 	content: [],
 	loadActivities: function () {
@@ -160,9 +177,11 @@ Km.selectedActivityController = Em.Object.create({
 	showaliasonid: [],
 	parent_id: null,
 	hideonactivity_ids: [],
+	reset: function () {
+		this.set('id', null);
+	},
 	isValid: function () {
-		return !Em.empty(this.get('id')) 
-				&& !Em.empty(this.get('parent_id'));
+		return !Em.empty(this.get('id')) && !Em.empty(this.get('parent_id'));
 	},
 	getKey: function () {
 		if(this.isValid) {
@@ -183,9 +202,11 @@ Km.selectedAccountController = Em.Object.create({
 	name: null,
 	parent_id: null,
 	hideonactivity_ids: [],
+	reset: function () {
+		this.set('id', null);
+	},
 	isValid: function () {
-		return !Em.empty(this.get('id')) 
-				&& !Em.empty(this.get('parent_id'));
+		return !Em.empty(this.get('id')) && !Em.empty(this.get('parent_id'));
 	},
 	getKey: function () {
 		if(this.isValid) {
@@ -209,14 +230,14 @@ Km.overviewController = Em.Object.create({
 });
 
 
-/************************** 
+/**************************
 * Views
 **************************/
 Km.DropDowns = Em.View.extend({
 	templateName: 'kmdropdown',
-	debug: false,
-	activitySelect: Em.View.extend({	
-		isOpen: false,	
+	debug: true,
+	activitySelect: Em.View.extend({
+		isOpen: false,
 		selectedActivity: Em.Object.create({
 			id: null,
 			name: 'Select Activity',
@@ -225,7 +246,7 @@ Km.DropDowns = Em.View.extend({
 			parent_id: null,
 			hideonactivity_ids: [],
 			showAlias: false
-		}),	
+		}),
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
@@ -247,6 +268,7 @@ Km.DropDowns = Em.View.extend({
 				selected = e.context,
 				overview = Km.overviewController;
 			overview.reset();
+			Km.selectedActivityController.reset();
 			this.content.setEach('isActive', false);
 			this.set('selectedActivity', selected);
 			Km.selectedActivityController.setProperties({
@@ -263,24 +285,23 @@ Km.DropDowns = Em.View.extend({
 				var parentActivity = Km.activitysController.objectAt(parent_id-1),
 					parentActivityName = parentActivity.name;
 				console.log(e.context);
-				console.log(this.selectedActivity);
+				console.log('selected activity ' + selected);
 				console.log(parent_id);
 				console.log(id);
 				console.log(parentActivityName + ' >> ' + parentActivity.activitynames[id-1].name);
-				console.log('Parent_ID ' + Km.selectedActivityController.parent_id + 
-							' Child_ID ' + Km.selectedActivityController.id);
+				console.log('Parent_ID ' + Km.selectedActivityController.parent_id + ' Child_ID ' + Km.selectedActivityController.id);
 				console.log(Km.selectedActivityController);
 			}
 		}
 	}),
 
-	accountSelect: Em.View.extend({	
+	accountSelect: Em.View.extend({
 		isOpen: false,
 		selectedAccount: Em.Object.create({
 			id: null,
 			name: 'Select Account',
 			parent_id: null
-		}),		
+		}),
 		dropdownToggle: function (e) {
 			this.toggleProperty('isOpen');
 			e.stopPropagation();
@@ -317,8 +338,7 @@ Km.DropDowns = Em.View.extend({
 				console.log(parent_id);
 				console.log(id);
 				console.log(parentAccountName + ' >> ' + parentAccount.accounttypes[id-1].name);
-				console.log('Parent Id ' + Km.selectedAccountController.parent_id + 
-							' Child Id ' + Km.selectedAccountController.id);
+				console.log('Parent Id ' + Km.selectedAccountController.parent_id + ' Child Id ' + Km.selectedAccountController.id);
 				console.log(Km.selectedAccountController);
 			}
 			
@@ -326,35 +346,33 @@ Km.DropDowns = Em.View.extend({
 
 	}),
 
-	goButton: Em.View.extend({	
+	goButton: Em.View.extend({
 		isDisabled: true,
 		validCheck: function () {
 			var activityIsValid = Km.selectedActivityController.isValid(),
 				accountIsValid  = Km.selectedAccountController.isValid();
-			if (activityIsValid 
-					&& accountIsValid) {
+			if (activityIsValid && accountIsValid) {
 				return this.set('isDisabled', false);
-			} else { 
+			} else {
 				return this.set('isDisabled', true);
 			}
 		}.observes('Km.selectedAccountController.id', 'Km.selectedActivityController.id'),
 		go: function(e) {
 			var activityIsValid = Km.selectedActivityController.isValid(),
 				accountIsValid  = Km.selectedAccountController.isValid();
-			if (activityIsValid 
-					&& accountIsValid) {
+			if (activityIsValid && accountIsValid) {
 				var actKey = Km.selectedActivityController.getKey(),
 						accntKey = Km.selectedAccountController.getKey();
 				this.loadOverview(actKey, accntKey);
 			}
-			e.preventDefault();			
+			e.preventDefault();
 		},
 		loadOverview: function (actKey, accntKey) {
 			var keyPair = actKey + '.' + accntKey;
 			$.getJSON('data/key2tag.json', function(data) {
 				$(data).each(function(i,p) {
 					if (keyPair === String(p.keypair)) {
-						Km.overviewController.set('tag', p.tag)
+						Km.overviewController.set('tag', p.tag);
 					}
 				});
 			});

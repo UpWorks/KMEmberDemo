@@ -71,7 +71,7 @@
 				</a>
 				<ul class="dropdown-menu wide">
 					{{#each content}}
-					<li><b>{{name}}</b></li>			
+					<li {{bindAttr class="isHidden:hide"}}><b>{{name}}</b></li>			
 						{{#each accounttypes}}	
 							<li {{bindAttr class="isHidden:hide"}}>
 							<a href="#" {{action "select" on="click"}}>{{name}}</a></li>
