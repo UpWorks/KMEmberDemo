@@ -235,7 +235,7 @@ Km.overviewController = Em.Object.create({
 **************************/
 Km.DropDowns = Em.View.extend({
 	templateName: 'kmdropdown',
-	debug: true,
+	debug: false,
 	activitySelect: Em.View.extend({
 		isOpen: false,
 		selectedActivity: Em.Object.create({
