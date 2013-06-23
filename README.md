@@ -1,6 +1,8 @@
 #KM Web Activity Account Selector (Quick Search)
 ===========
 
+## This is deprecated and no longer supported.
+
 ##Dependencies
 
 ###CSS
